@@ -29,6 +29,10 @@ public class CustomersController {
         return listMapper.mapList(customersService.getCustomers(), CustomerDTO.class, modelMapper);
     }
 
+    @GetMapping("/login/{customerNumber}")
+    public CustomerDTO login(@PathVariable Integer customerNumber, @RequestParam String password) {
+        return modelMapper.map(customersService.login(customerNumber, password), CustomerDTO.class);
+    }
     @GetMapping("/pages")
     public PageDto<CustomerDTO> getCustomers(@RequestParam(defaultValue = "0") Integer pageNo,
                                              @RequestParam(defaultValue = "10") Integer pageSize,

@@ -1,12 +1,16 @@
 package sit.remidterm.service;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import sit.remidterm.dto.CustomerCreateDTO;
+import sit.remidterm.exceptions.IncorrectPasswordException;
+import sit.remidterm.exceptions.ResourceNotFoundException;
 import sit.remidterm.model.Customers;
 import sit.remidterm.model.Employees;
 import sit.remidterm.repository.CustomersRepository;
@@ -90,5 +94,16 @@ public class CustomersService {
     public Page<Customers> getCustomers(Integer pageNo, Integer pageSize, String sortBy) {
         Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
         return customersRepository.findAll(paging);
+    }
+
+
+    public Customers login(Integer customerNumber, String password) {
+        Customers customers = customersRepository.findById(customerNumber).orElseThrow(()-> new IncorrectPasswordException("Customer not found"));
+        BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(), customers.getPassword().toCharArray());
+        if (result.verified) {
+            return getCustomers(customerNumber);
+        } else {
+            throw new IncorrectPasswordException("Password not match");
+        }
     }
 }

@@ -41,4 +41,6 @@ public class Customers {
     private Employees salesRepEmployeeNumber;
     @Column(name = "creditLimit")
     private Double creditLimit;
+    @Column(name = "password" , nullable = false)
+    private String password;
 }

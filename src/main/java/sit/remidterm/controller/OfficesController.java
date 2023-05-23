@@ -2,10 +2,12 @@ package sit.remidterm.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import sit.remidterm.exceptions.ResourceNotFoundException;
 import sit.remidterm.model.Offices;
 import sit.remidterm.service.OfficesService;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/api/offices")
@@ -48,5 +50,9 @@ public class OfficesController {
         officesService.deleteOfficesById(id);
     }
 
-
+    @ExceptionHandler(NoSuchElementException.class)
+//    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ResourceNotFoundException handleNoSuchElementException(Exception ex) {
+        return new ResourceNotFoundException(ex.getMessage());
+    }
 }

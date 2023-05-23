@@ -3,6 +3,7 @@ package sit.remidterm;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
 import sit.remidterm.utils.ListMapper;
 
 
@@ -17,4 +18,5 @@ public class ApplicationConfig {
     public ListMapper listMapper() {
         return ListMapper.getInstance();
     }
+
 }
