@@ -26,13 +26,12 @@ public class Employees {
     @Column(name = "email", nullable = false)
     private String email;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "officeCode", nullable = false)
     private Offices officeCode;
 
     @ManyToOne
-    @JoinColumn(name = "employeeNumber", insertable = false, updatable = false)
+    @JoinColumn(name = "reportsTo", insertable = false, updatable = false)
     private Employees reportsTo;
 
     @Column(name = "jobTitle", nullable = false)

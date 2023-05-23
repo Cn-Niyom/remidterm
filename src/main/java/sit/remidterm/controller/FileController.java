@@ -40,30 +40,31 @@ public class FileController {
 
         @DeleteMapping("/{filename:.+}")
     public String deleteFile(@PathVariable String filename){
+
         return  fileService.removeResource(filename);
 
     }
-//    @ExceptionHandler(FileNotFoundException.class)
-//    @ResponseStatus(HttpStatus.NOT_FOUND)
-//    public ResponseEntity<ErrorResponse> handleFileNotFound(Exception ex, WebRequest request) {
-//        ErrorResponse er = new ErrorResponse(
-//                HttpStatus.NOT_FOUND.value(),
-//                ex.getMessage(),
-//                request.getDescription(false).substring(4));
-//        er.addValidationError("Field 1","error 1");
-//        er.addValidationError("Field 2","error 2");
-//        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(er);
-//    }
-//
-//    @ExceptionHandler(NullPointerException.class)
-//    public RuntimeException handleNullPointer(RuntimeException exception) {
-//        return exception;
-//    }
-//
-//    @ExceptionHandler(NumberFormatException.class)
-//    public RuntimeException handleNumberFormat(RuntimeException exception) {
-//        return exception;
-//    }
+    @ExceptionHandler(FileNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ResponseEntity<ErrorResponse> handleFileNotFound(Exception ex, WebRequest request) {
+        ErrorResponse er = new ErrorResponse(
+                HttpStatus.NOT_FOUND.value(),
+                ex.getMessage(),
+                request.getDescription(false).substring(4));
+        er.addValidationError("Field 1","error 1");
+        er.addValidationError("Field 2","error 2");
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(er);
+    }
+
+    @ExceptionHandler(NullPointerException.class)
+    public RuntimeException handleNullPointer(RuntimeException exception) {
+        return exception;
+    }
+
+    @ExceptionHandler(NumberFormatException.class)
+    public RuntimeException handleNumberFormat(RuntimeException exception) {
+        return exception;
+    }
 }
 
 
