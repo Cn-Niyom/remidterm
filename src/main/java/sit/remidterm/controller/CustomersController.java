@@ -28,6 +28,7 @@ public class CustomersController {
     public List<CustomerDTO> getCustomers() {
         return listMapper.mapList(customersService.getCustomers(), CustomerDTO.class, modelMapper);
     }
+
     @GetMapping("/pages")
     public PageDto<CustomerDTO> getCustomers(@RequestParam(defaultValue = "0") Integer pageNo,
                                              @RequestParam(defaultValue = "10") Integer pageSize,

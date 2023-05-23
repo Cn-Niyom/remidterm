@@ -21,6 +21,6 @@ public class OrderDTO {
 
     public String getCustomer() {
         if (customer == null) return "";
-            return customer.getCustomerName()+" "+customer.getContactLastName()+" "+customer.getContactFirstName();
+        return customer.getCustomerName() + " " + customer.getContactLastName() + " " + customer.getContactFirstName();
     }
 }

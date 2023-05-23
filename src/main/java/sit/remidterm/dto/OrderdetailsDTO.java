@@ -23,6 +23,7 @@ public class OrderdetailsDTO {
             return null;
         return order.getOrderNumber();
     }
+
     public String getProduct() {
         if (product == null)
             return null;

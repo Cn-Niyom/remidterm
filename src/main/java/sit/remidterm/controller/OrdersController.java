@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import sit.remidterm.dto.OrderCreateDTO;
 import sit.remidterm.dto.OrderDTO;
-import sit.remidterm.model.Orders;
 import sit.remidterm.service.OrdersService;
 import sit.remidterm.utils.ListMapper;
 
@@ -38,6 +37,7 @@ public class OrdersController {
     public OrderDTO createOrder(@RequestBody OrderCreateDTO orders) {
         return modelMapper.map(orderService.createOrder(orders), OrderDTO.class);
     }
+
     @PutMapping("/{id}")
 //    public Orders updateOrder(@PathVariable Integer id, @RequestBody OrderCreateDTO orders) {
 //        return orderService.updateOrder(id, orders);
@@ -45,6 +45,7 @@ public class OrdersController {
     public OrderDTO updateOrder(@PathVariable Integer id, @RequestBody OrderCreateDTO orders) {
         return modelMapper.map(orderService.updateOrder(id, orders), OrderDTO.class);
     }
+
     @GetMapping("/customer/{id}")
     public List<OrderDTO> getOrderByCustomer(@PathVariable Integer id) {
         return listMapper.mapList(orderService.getOrderByCustomer(id), OrderDTO.class, modelMapper);

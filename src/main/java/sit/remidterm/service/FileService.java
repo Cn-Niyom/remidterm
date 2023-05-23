@@ -1,4 +1,5 @@
 package sit.remidterm.service;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -6,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 import sit.remidterm.properties.FileStorageProperties;
-
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -57,7 +57,7 @@ public class FileService {
             Path filePath = this.fileStorageLocation.resolve(fileName).normalize();
             Resource resource = new UrlResource(filePath.toUri());
 //            if (resource.exists()) {
-                return resource;
+            return resource;
 //            } else {
 //                throw new ResourseNotFound("File not found " + fileName);
 //            }
@@ -66,19 +66,19 @@ public class FileService {
         }
     }
 
-    public String removeResource (String fileName){
+    public String removeResource(String fileName) {
         try {
             Path filePath = this.fileStorageLocation.resolve(fileName).normalize();
             Resource resource = new UrlResource(filePath.toUri());
             if (resource.exists()) {
                 Files.delete(filePath);
-                return fileName + " has  been delete";}
-            else {
-                throw  new RuntimeException("File not found" + fileName);
+                return fileName + " has  been delete";
+            } else {
+                throw new RuntimeException("File not found" + fileName);
             }
 
-        }catch (IOException ex){
-            throw  new RuntimeException("File operation error:" + fileName, ex);
+        } catch (IOException ex) {
+            throw new RuntimeException("File operation error:" + fileName, ex);
         }
     }
 

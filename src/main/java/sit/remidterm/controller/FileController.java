@@ -12,7 +12,6 @@ import org.springframework.web.multipart.MultipartFile;
 import sit.remidterm.exceptions.ErrorResponse;
 import sit.remidterm.service.FileService;
 
-
 import java.io.FileNotFoundException;
 
 @RestController
@@ -38,11 +37,13 @@ public class FileController {
         return "You successfully uploaded " + file.getOriginalFilename() + "!";
     }
 
-        @DeleteMapping("/{filename:.+}")
-    public String deleteFile(@PathVariable String filename){
-        return  fileService.removeResource(filename);
+    @DeleteMapping("/{filename:.+}")
+    public String deleteFile(@PathVariable String filename) {
+
+        return fileService.removeResource(filename);
 
     }
+
 //    @ExceptionHandler(FileNotFoundException.class)
 //    @ResponseStatus(HttpStatus.NOT_FOUND)
 //    public ResponseEntity<ErrorResponse> handleFileNotFound(Exception ex, WebRequest request) {
@@ -50,8 +51,8 @@ public class FileController {
 //                HttpStatus.NOT_FOUND.value(),
 //                ex.getMessage(),
 //                request.getDescription(false).substring(4));
-//        er.addValidationError("Field 1","error 1");
-//        er.addValidationError("Field 2","error 2");
+//        er.addValidationError("Field 1", "error 1");
+//        er.addValidationError("Field 2", "error 2");
 //        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(er);
 //    }
 //

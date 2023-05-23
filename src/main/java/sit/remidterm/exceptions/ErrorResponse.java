@@ -14,12 +14,13 @@ import java.util.List;
 @RequiredArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ErrorResponse {
-    private DateTimeException timestamp;
     private final int status;
     private final String message;
     private final String instance;
+    private DateTimeException timestamp;
     private String stackTrace;
     private List<ValidationError> errors;
+
     public void addValidationError(String field, String message) {
         if (errors == null) {
             errors = new ArrayList<>();

@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import sit.remidterm.dto.ProductCreateDTO;
 import sit.remidterm.dto.ProductDTO;
-import sit.remidterm.model.Products;
 import sit.remidterm.service.ProductsService;
 import sit.remidterm.utils.ListMapper;
 

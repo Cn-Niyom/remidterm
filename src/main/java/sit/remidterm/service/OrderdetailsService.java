@@ -6,13 +6,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import sit.remidterm.model.Orderdetails;
 import sit.remidterm.repository.OrderdetailsRepository;
 
-
 import java.util.List;
 
 @Service
 public class OrderdetailsService {
     @Autowired
     private OrderdetailsRepository orderdetailsRepository;
+
     public List<Orderdetails> getOrderdetails() {
         return orderdetailsRepository.findAll();
     }
@@ -25,7 +25,7 @@ public class OrderdetailsService {
         return orderdetailsRepository.saveAndFlush(orderdetails);
     }
 
-    public Orderdetails upOrderdetails(Orderdetails orderdetails, @PathVariable Integer orderNumber, @PathVariable String productCode) {
+    public Orderdetails updateOrderdetails(Orderdetails orderdetails, @PathVariable Integer orderNumber, @PathVariable String productCode) {
         Orderdetails orderdetails1 = findByOrderNumberAndProductCode(orderNumber, productCode);
         orderdetails1.setOrderLineNumber(orderdetails.getOrderLineNumber());
         orderdetails1.setPriceEach(orderdetails.getPriceEach());

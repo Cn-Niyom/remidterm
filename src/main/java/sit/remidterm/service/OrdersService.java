@@ -19,6 +19,7 @@ public class OrdersService {
     private CustomersRepository customersRepository;
     @Autowired
     private OrderdetailsRepository orderdetailsRepository;
+
     public List<Orders> getOrders() {
         return ordersRepository.findAll();
     }
@@ -74,12 +75,7 @@ public class OrdersService {
     public void deleteByCustomerNumber(Integer customerNumber) {
         List<Orders> orders = ordersRepository.findByCustomer_CustomerNumber(customerNumber);
         for (Orders order : orders) {
-            try {
-                orderdetailsRepository.deleteByOrder_OrderNumber(order.getOrderNumber());
-                orderdetailsRepository.flush();
-            } catch (Exception e) {
-                System.out.println("No orderdetails");
-            }
+            orderdetailsRepository.deleteByOrder_OrderNumber(order.getOrderNumber());
         }
         ordersRepository.deleteByCustomer_CustomerNumber(customerNumber);
         ordersRepository.flush();

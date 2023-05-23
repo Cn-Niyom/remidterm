@@ -1,7 +1,6 @@
 package sit.remidterm.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import sit.remidterm.model.Customers;
 import sit.remidterm.model.Payments;
 import sit.remidterm.utils.PaymentsID;
 
